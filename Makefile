@@ -13,7 +13,7 @@ help:
 	@echo
 	@echo "Targets:"
 	@echo "  help\t\tPrint this help"
-	@echo "  test\t\tLookup for docker and docker-compose binaries"
+	@echo "  test\t\tLookup for docker binary"
 	@echo "  setup\t\tBuild docker images"
 	@echo "  run [app]\tRun app defined in '\$$APP' (spoon by default)"
 	@echo ""
@@ -22,7 +22,6 @@ help:
 .PHONY: test
 test:
 	@which docker
-	@which docker-compose
 	@which xauth
 
 .PHONY: setup
