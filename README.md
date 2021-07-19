@@ -19,6 +19,7 @@ Usage:	/entrypoint.sh COMMAND
 Pentaho Data Integration (PDI)
 
 Options:
+  encr password		Obfuscate a password
   runj filename		Run job file
   runt filename		Run transformation file
   spoon			    Run spoon (GUI)
