@@ -13,7 +13,7 @@ RUN wget --progress=dot:giga http://downloads.sourceforge.net/project/pentaho/Da
 	&& rm -f *.zip \
 	&& mkdir /jobs
 
-# Aditional Drivers
+# Additional Drivers
 WORKDIR $KETTLE_HOME
 
 RUN wget https://downloads.sourceforge.net/project/jtds/jtds/1.3.1/jtds-1.3.1-dist.zip \
@@ -23,7 +23,7 @@ RUN wget https://downloads.sourceforge.net/project/jtds/jtds/1.3.1/jtds-1.3.1-di
 	&& unzip Jaybird-3.0.4-JDK_1.8.zip -d lib \
 	&& rm -rf lib/docs/ Jaybird-3.0.4-JDK_1.8.zip
 
-# Adictional Setup
+# Additional Setup
 COPY ./setup.sh /
 RUN chmod +x /setup.sh \
 	&& . /setup.sh

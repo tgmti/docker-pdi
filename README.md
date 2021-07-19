@@ -5,7 +5,7 @@ Docker Pentaho Data Integration
 
 DockerFile for [Pentaho Data Integration](https://sourceforge.net/projects/pentaho/) (a.k.a kettel / PDI)
 
-This image is intendend to allow execution os PDI transformations and jobs throught command line and run PDI's UI (`Spoon`). PDI server (`Carter`) is available on this image.
+This image is intended to allow execution of PDI transformations and jobs through command line and run PDI's UI (`Spoon`). PDI server (`Carte`) is available on this image.
 
 # Quick start
 
