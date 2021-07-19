@@ -1,7 +1,15 @@
 #!/bin/bash
 #set -x
 
-IMAGE=tgmti/pdi
+# pull in any overrides to IMAGE from the .env file
+if [ -f .env ]
+then
+  export $(sed 's/#.*//g' .env)
+fi
+
+# Use image name including dockerhub user unless
+# overwritten in .env file with a custom local image name
+IMAGE=${IMAGE:="tgmti/pdi"}
 CONTAINER_NAME=spoon
 
 is_running(){

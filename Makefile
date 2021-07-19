@@ -1,4 +1,10 @@
-IMAGE=pdi
+# pull in any overrides to IMAGE from the .env file
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
+
+IMAGE?=pdi
 APP=spoon
 
 .PHONY: help
