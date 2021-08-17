@@ -6,6 +6,7 @@ endif
 
 IMAGE?=pdi
 APP=spoon
+DOCKERFILE?=Dockerfile
 
 .PHONY: help
 help:
@@ -14,7 +15,7 @@ help:
 	@echo "Targets:"
 	@echo "  help\t\tPrint this help"
 	@echo "  test\t\tLookup for docker binary"
-	@echo "  setup\t\tBuild docker images"
+	@echo "  setup [DOCKERFILE]\tBuild docker image defined in '\$$DOCKERFILE' (Dockerfile by default)"
 	@echo "  run [app]\tRun app defined in '\$$APP' (spoon by default)"
 	@echo ""
 	@echo "Example: make run APP=spoon"
@@ -25,8 +26,8 @@ test:
 	@which xauth
 
 .PHONY: setup
-setup: Dockerfile
-	docker image build -t $(IMAGE) .
+setup: $(DOCKERFILE)
+	docker image build -t $(IMAGE) -f $(DOCKERFILE) .
 
 .PHONY: run
 run:
