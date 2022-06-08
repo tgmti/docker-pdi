@@ -45,6 +45,7 @@ $ docker container run --rm -v $(pwd):/jobs tgmti/pdi runj  sample/dummy.kjb
 ```
 $ docker run -it --rm -v /tmp/.X11-unix/:/tmp/.X11-unix/:ro \
         -v $(pwd):/jobs \
+        -v ~/.kettle:/data-integration/.kettle \
         -e XAUTH=$(xauth list|grep `uname -n` | cut -d ' ' -f5) -e "DISPLAY" \
         --name spoon \
         tgmti/pdi spoon
