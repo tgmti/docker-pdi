@@ -1,5 +1,12 @@
-IMAGE=pdi
+# pull in any overrides to IMAGE from the .env file
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
+
+IMAGE?=pdi
 APP=spoon
+DOCKERFILE?=Dockerfile
 
 .PHONY: help
 help:
@@ -7,8 +14,8 @@ help:
 	@echo
 	@echo "Targets:"
 	@echo "  help\t\tPrint this help"
-	@echo "  test\t\tLookup for docker and docker-compose binaries"
-	@echo "  setup\t\tBuild docker images"
+	@echo "  test\t\tLookup for docker binary"
+	@echo "  setup [DOCKERFILE]\tBuild docker image defined in '\$$DOCKERFILE' (Dockerfile by default)"
 	@echo "  run [app]\tRun app defined in '\$$APP' (spoon by default)"
 	@echo ""
 	@echo "Example: make run APP=spoon"
@@ -16,12 +23,11 @@ help:
 .PHONY: test
 test:
 	@which docker
-	@which docker-compose
 	@which xauth
 
 .PHONY: setup
-setup: Dockerfile
-	docker image build -t $(IMAGE) .
+setup: $(DOCKERFILE)
+	docker image build -t $(IMAGE) -f $(DOCKERFILE) .
 
 .PHONY: run
 run:

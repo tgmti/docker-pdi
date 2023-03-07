@@ -15,6 +15,15 @@ custom_properties() {
 	fi
 }
 
+encr() {
+	custom_properties
+	# set the path to java so the encr.sh script will work
+	. ./set-pentaho-env.sh
+	setPentahoEnv
+	export PATH=$PATH:$_PENTAHO_JAVA_HOME/bin
+	./encr.sh -kettle $1
+}
+
 run_pan() {
 	custom_properties
 	echo ./pan.sh -file $@
@@ -42,6 +51,7 @@ Usage:	$0 COMMAND
 Pentaho Data Integration (PDI)
 
 Options:
+  encr password		Obfuscate a password
   runj filename		Run job file
   runt filename		Run transformation file
   spoon			Run spoon (GUI)
@@ -52,6 +62,10 @@ Options:
 case "$1" in
     help)
         print_usage
+        ;;
+    encr)
+	shift 1
+        encr "$@"
         ;;
     runt)
 	shift 1
